@@ -16,11 +16,11 @@
     let tasklist = [];
     
     while (true) {
-        let act = prompt("TO DO LIST\n\n- add\n- view\n- remove\n- quit\n\nEnter action name").toLowerCase();
+        let act = prompt("To Do List..\n\n- add\n- view\n- remove\n- quit\n\nEnter action name").toLowerCase();
         
         switch (act) {
             case "add":
-                let task = prompt("TO DO LIST\n\nEnter task name to add");
+                let task = prompt("To Do List..\n\nEnter task name to add");
                 if (task) {
                     tasklist.push(task.toLowerCase());
                     alert("Added: " + task);
@@ -28,19 +28,19 @@
                 break;
             
             case "view":
-                let listOutput = "TO DO LIST\n";
+                let listOutput = "To Do List\n";
                 listOutput += tasklist.length ? "\n" + tasklist.join("\n") : "\n...\n...\n...\n\nMaybe add some tasks?";
                 alert(listOutput);
                 break;
             
-            case "remove":
+            case "delete":
                 if (tasklist.length) {
-                    let removeTask = prompt("TO DO LIST\n\nEnter task name to remove\n\n" + tasklist).toLowerCase();
+                    let removeTask = prompt("To Do List\n\nEnter task name to remove\n\n" + tasklist).toLowerCase();
                     let index = tasklist.indexOf(removeTask);
                     
                     if (index !== -1) {
                         tasklist.splice(index, 1);
-                        alert("Removed: " + removeTask);
+                        alert("Deleted: " + removeTask);
                     } else {
                         alert("No such task");
                     }
@@ -49,8 +49,8 @@
                 }
                 break;
             
-            case "quit":
-                alert("Quitting TO DO LIST");
+            case "exit":
+                alert("Exiting To Do List");
                 break;
             
             default:
@@ -58,7 +58,7 @@
                 continue;
         }
         
-        if (act === "quit") break;
+        if (act === "Exit") break;
     }
 </script>
 
