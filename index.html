@@ -6,59 +6,51 @@
     <title>To-Do List</title>
 </head>
 <body>
-    <p>
-        Exit
-    </p>
+    <script>
+        let todoList = [];
+        let action;
+        
+        while (true) {
+            action = prompt("Choose an action: add, view, remove, or quit");
+            
+            if (action === "add") {
+                let newTask = prompt("Enter the task to add:");
+                if (newTask) {
+                    todoList.push(newTask);
+                    alert("Task added: " + newTask);
+                } else {
+                    alert("Task cannot be empty!");
+                }
+            } 
+            else if (action === "view") {
+                if (todoList.length === 0) {
+                    alert("Your to-do list is empty.");
+                } else {
+                    let tasks = "Your To-Do List:\n";
+                    for (let task of todoList) {
+                        tasks += "- " + task + "\n";
+                    }
+                    alert(tasks);
+                }
+            } 
+            else if (action === "remove") {
+                let removeTask = prompt("Enter the task name to remove:");
+                let index = todoList.indexOf(removeTask);
+                if (index !== -1) {
+                    todoList.splice(index, 1);
+                    alert("Task removed: " + removeTask);
+                } else {
+                    alert("Task not found in the list.");
+                }
+            } 
+            else if (action === "quit") {
+                alert("Exiting the to-do list application.");
+                break;
+            } 
+            else {
+                alert("Invalid action. Please enter add, view, remove, or quit.");
+            }
+        }
+    </script>
 </body>
 </html>
-
-<script>
-    let tasklist = [];
-    
-    while (true) {
-        let act = prompt("To Do List..\n\n- add\n- view\n- remove\n- quit\n\nEnter action name").toLowerCase();
-        
-        switch (act) {
-            case "add":
-                let task = prompt("To Do List..\n\nEnter task name to add");
-                if (task) {
-                    tasklist.push(task.toLowerCase());
-                    alert("Added: " + task);
-                }
-                break;
-            
-            case "view":
-                let listOutput = "To Do List\n";
-                listOutput += tasklist.length ? "\n" + tasklist.join("\n") : "\n...\n...\n...\n\nMaybe add some tasks?";
-                alert(listOutput);
-                break;
-            
-            case "delete":
-                if (tasklist.length) {
-                    let removeTask = prompt("To Do List\n\nEnter task name to remove\n\n" + tasklist).toLowerCase();
-                    let index = tasklist.indexOf(removeTask);
-                    
-                    if (index !== -1) {
-                        tasklist.splice(index, 1);
-                        alert("Deleted: " + removeTask);
-                    } else {
-                        alert("No such task");
-                    }
-                } else {
-                    alert("Task list is empty");
-                }
-                break;
-            
-            case "exit":
-                alert("Exiting To Do List");
-                break;
-            
-            default:
-                alert("Enter proper option");
-                continue;
-        }
-        
-        if (act === "Exit") break;
-    }
-</script>
-
