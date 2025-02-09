@@ -3,54 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>To-Do List Maker</title>
 </head>
 <body>
     <script>
-        let todoList = [];
-        let action;
-        
-        while (true) {
-            action = prompt("Choose an action: add, view, remove, or quit");
-            
+        let toDoList = []; // Initialize an empty array
+        let action = "";
+
+        while (action.toLowerCase() !== "quit") {
+            action = prompt(
+                "WELCOME TO THE TO-DO LIST MAKER!\n\n" +
+                "Available actions:\n" +
+                "* Add: Add a new task\n" +
+                "* View: View the current to-do list\n" +
+                "* Remove: Remove a task\n" +
+                "* Quit: Exit the application\n\n" +
+                "Enter an action:"
+            );
+
+            if (action) {
+                action = action.toLowerCase().trim();
+            }
+
             if (action === "add") {
                 let newTask = prompt("Enter the task to add:");
                 if (newTask) {
-                    todoList.push(newTask);
+                    toDoList.push(newTask);
                     alert("Task added: " + newTask);
                 } else {
                     alert("Task cannot be empty!");
                 }
-            } 
-            else if (action === "view") {
-                if (todoList.length === 0) {
-                    alert("Your to-do list is empty.");
+
+            } else if (action === "view") {
+                if (toDoList.length === 0) {
+                    alert("To-Do List:\n(empty)");
                 } else {
-                    let tasks = "Your To-Do List:\n";
-                    for (let task of todoList) {
-                        tasks += "- " + task + "\n";
-                    }
-                    alert(tasks);
+                    let list = "To-Do List:\n" + toDoList.map(task => "* " + task).join("\n");
+                    alert(list);
                 }
-            } 
-            else if (action === "remove") {
-                let removeTask = prompt("Enter the task name to remove:");
-                let index = todoList.indexOf(removeTask);
+
+            } else if (action === "remove") {
+                let taskToRemove = prompt("Enter the task to remove:");
+                let index = toDoList.indexOf(taskToRemove);
+
                 if (index !== -1) {
-                    todoList.splice(index, 1);
-                    alert("Task removed: " + removeTask);
+                    toDoList.splice(index, 1);
+                    alert("Task removed: " + taskToRemove);
                 } else {
-                    alert("Task not found in the list.");
+                    alert("Task not found!");
                 }
-            } 
-            else if (action === "quit") {
-                alert("Exiting the to-do list application.");
-                break;
-            } 
-            else {
-                alert("Invalid action. Please enter add, view, remove, or quit.");
+
+            } else if (action !== "quit") {
+                alert("Invalid action! Please enter Add, View, Remove, or Quit.");
             }
         }
+
+        alert("Goodbye! Thanks for using the To-Do List Maker.");
     </script>
 </body>
 </html>
